@@ -20,18 +20,21 @@ form {
 
 input,
 select,
-button,
-p {
+button {
     height: 42px;
     color: #D5D4D8;
     font-family: "Roboto", sans-serif;
 }
 
 p {
+    color: #D5D4D8;
+    font-family: "Roboto", sans-serif;
     text-align: center;
-    padding-top: 0.8em;
     cursor: pointer;
     border-radius: 6px;
+    padding: 1em 0;
+    line-height: 1;
+    margin-top: 0.5em;
 }
 
 button,
