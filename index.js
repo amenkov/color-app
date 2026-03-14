@@ -46,7 +46,7 @@ function getPalette(color, mode) {
 
 
     const colorTrimmed = color.slice(1)
-    fetch(`https://www.thecolorapi.com/scheme?hex=${colorTrimmed}&mode=${mode}&count=7`)
+    fetch(`https://www.thecolorapi.com/scheme?hex=${colorTrimmed}&mode=${mode}&count=5`)
         .then(res => res.json())
         .then(data => {
             data.colors.forEach(color => {
