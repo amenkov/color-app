@@ -6,14 +6,20 @@ const availableSchemes = ['monochrome', 'monochrome-dark', 'monochrome-light', '
 
 const localStorageKey = 'color-app'
 const localStorageKeyModeKey = 'color-app-mode'
+const localStorageKeyColor = 'color-app-mode-color'
 
 const savedPalette = JSON.parse(localStorage.getItem(localStorageKey))
 const savedMode = JSON.parse(localStorage.getItem(localStorageKeyModeKey))
+const savedColor = JSON.parse(localStorage.getItem(localStorageKeyColor))
 
 populateOptions()
 
 if (savedPalette) {
     renderPalette(savedPalette)
+}
+
+if (savedColor) {
+    colorPickerEl.value = savedColor
 }
 
 function populateOptions() {
@@ -52,11 +58,11 @@ function getPalette(color, mode) {
             data.colors.forEach(color => {
                 palette.push(color.hex.value)
             })
-            renderPalette(palette, mode)
+            renderPalette(palette, mode, color)
         })
 }
 
-function renderPalette(palette, mode) {
+function renderPalette(palette, mode, color) {
 
     palette.forEach(value => {
 
@@ -88,6 +94,7 @@ function renderPalette(palette, mode) {
 
     localStorage.setItem(localStorageKey, JSON.stringify(palette))
     localStorage.setItem(localStorageKeyModeKey, JSON.stringify(mode))
+    localStorage.setItem(localStorageKeyColor, JSON.stringify(color))
 
 }
 
