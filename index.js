@@ -8,11 +8,9 @@ const localStorageKey = 'color-app'
 const localStorageKeyModeKey = 'color-app-mode'
 const localStorageKeyColor = 'color-app-mode-color'
 
-const savedPalette = JSON.parse(localStorage.getItem(localStorageKey))
-const savedMode = JSON.parse(localStorage.getItem(localStorageKeyModeKey))
-const savedColor = JSON.parse(localStorage.getItem(localStorageKeyColor))
-
-populateOptions()
+const savedPalette = JSON.parse(localStorage?.getItem(localStorageKey))
+const savedMode = JSON.parse(localStorage?.getItem(localStorageKeyModeKey))
+const savedColor = JSON.parse(localStorage?.getItem(localStorageKeyColor))
 
 if (savedPalette) {
     renderPalette(savedPalette)
@@ -22,11 +20,14 @@ if (savedColor) {
     colorPickerEl.value = savedColor
 }
 
+populateOptions()
+
 function populateOptions() {
     availableSchemes.forEach(scheme => {
         const option = document.createElement('option')
         option.id = scheme
         option.textContent = scheme
+        
 
         if (scheme === savedMode) {
             option.selected = true
@@ -40,8 +41,6 @@ document.addEventListener('submit', function (e) {
     e.preventDefault()
 
     paletteSection.innerHTML = ''
-    const color = colorPickerEl.value
-    const mode = schemeListEl.value
     getPalette(colorPickerEl.value, schemeListEl.value)
 
 })
@@ -79,7 +78,7 @@ function renderPalette(palette, mode, color) {
                 console.error('Failed to copy text: ', err);
             }
         }
-        
+
 
         let colorDiv = document.createElement('div')
         colorDiv.className = 'color-div'
@@ -92,9 +91,9 @@ function renderPalette(palette, mode, color) {
 
     })
 
-    localStorage.setItem(localStorageKey, JSON.stringify(palette))
-    localStorage.setItem(localStorageKeyModeKey, JSON.stringify(mode))
-    localStorage.setItem(localStorageKeyColor, JSON.stringify(color))
+    palette && localStorage.setItem(localStorageKey, JSON.stringify(palette))
+    mode && localStorage.setItem(localStorageKeyModeKey, JSON.stringify(mode))
+    color && localStorage.setItem(localStorageKeyColor, JSON.stringify(color))
 
 }
 
